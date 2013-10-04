@@ -1,0 +1,17 @@
+<h2>Welcome to our Coff.ee</h2>
+
+<p>Here you will find the finest coffees in the world</p>
+
+<% @products.each do |p| %>
+<div class="product">
+	<%= image_tag p.image(:medium) %>
+	<h3><%= link_to p.title, product_path(p) %></h3>
+	<p><%= p.price_in_pence %></p>
+	<p><%= link_to "Read more...", product_path(p) %></p>
+	<% if basket.include?(p.id) %>
+		<%= link_to "Remove from Basket", product_basket_path(p), method: :delete %>
+	<% else %>
+		<%= link_to "Add to Basket", product_basket_path(p), method: :post %>
+	<% end %>
+</div>
+	<% end %>
